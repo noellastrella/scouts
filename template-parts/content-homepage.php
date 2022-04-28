@@ -30,12 +30,69 @@
     ?>
         <header class="entry-header" id="hero-header" style="background-image:url(<?php echo $hero_image ?>)">
             <?php 
-			echo get_field('display_sign_up_button', "option");
+
+			if(get_field('intro_video')['url']){
+			?>
+			<style>
+				header#hero-header{
+					overflow: hidden;
+					position: relative;
+					background-color: #2d509f;
+					background-image:none !important; 
+					height: 25em
+				}
+
+				header#hero-header::before {
+					content: " ";
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					right: 0;
+					background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+					z-index: 2;
+					background-size: 100% 2px, 3px 100%;
+					pointer-events: none;
+				}
+
+				#header-video{
+					width: 100%;
+					position: absolute;
+					top: -180px;
+					opacity: .8;
+					box-shadow: inset 1px 0px 23px 26px rgba(0,0,0,0.57);
+				}
+
+
+				@media screen and (max-width: 600px) {
+					#header-video{
+        				top: 0;
+    				}
+					header#hero-header {
+						height: 12px;
+    					min-height: 12em;
+					}
+			</style>
+<video autoplay loop playsinline muted width="250" id="header-video">
+
+
+<source src="<?php  echo get_field('intro_video')['url'];?>"
+		type="video/mp4">
+
+Sorry, your browser doesn't support embedded videos.
+</video>			
+			<?php
+			}
                 if(get_field('display_sign_up_button', "option")){
                     echo get_field('sign_up_button', "option"); 
                 }
+
             ?>             
         </header><!-- .entry-header -->
+	<?php
+
+	?>
 	<section id="content_sections">
 		<div class="entry-content">
 			<section class="page_sections">
@@ -60,7 +117,7 @@
 				foreach( $rows as $row ) {
 					$header = $row['header'];
 					$text = $row['text'];
-					$bgc = $row['background-color'];
+					//$bgc = $row['background-color'];
                     if($row['section_id']){
                         $section_id = 'id="'.$row['section_id']. '"';
                     }else{

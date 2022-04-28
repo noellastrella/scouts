@@ -25,7 +25,7 @@
 	<?php
 	}
 	?>	
-	X
+	
 
 	<?php scouts_post_thumbnail(); ?>
 

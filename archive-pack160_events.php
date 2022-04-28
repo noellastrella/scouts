@@ -34,7 +34,7 @@ if(the_post_thumbnail_url()){
 		<section id="content_sections">
 			<div class="entry-content">
 				<section class="content_section">
-						<h1 class="page-title">Pack Events!</h1>
+						<h1 class="page-title">Pack Events!!</h1>
 							<header class="page-header">
 								<?php
 								the_archive_description( '<div class="archive-description">', '</div>' );

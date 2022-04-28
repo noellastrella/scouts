@@ -26,3 +26,19 @@ if( function_exists('acf_add_options_page') ) {
     add_filter('acf/format_value/type=textarea', 'do_shortcode');
 
 //================================
+
+
+function enable_frontend_dashicons() {
+    wp_enqueue_style( 'dashicons' );
+  }
+  add_action( 'wp_enqueue_scripts', 'enable_frontend_dashicons' );
+
+
+  //================================
+
+
+
+
+
+  //================================
+  //================================
