@@ -18,11 +18,14 @@
 
 	if(has_post_thumbnail()){
 		$hero_image = get_the_post_thumbnail_url();
+		
 	}else{
 	if(get_field("default_hero_image", "option")){
 		$hero_image = get_field("default_hero_image", "option");
+		
 	}else{
 		$hero_image = get_template_directory_uri() . "/images/dens.jpg";
+		
 	}
 }
 ?>
@@ -42,57 +45,32 @@
 			<?php
 			the_content();
 
-			$event_title = get_the_title();
-            $start_date = get_field('event_start_date');
-            $end_date = get_field('event_end_date');
-            $start_time = get_field('event_start_time');
-            $end_time = get_field('event_end_time');
-            $upcoming_event_description = get_field("upcoming_event_description");
-            $event_status = get_field("event_status");
+    
+            $rows = get_field('documents');
+if( $rows ) {
+    echo '<ul class="documents_list">';
+    foreach( $rows as $row ) {
+        
+        $doc_title = $row['title'];
+        $doc_description = $row['description'];
+        $doc_file = $row['file']['url'];
+        echo <<<DOCSX
+        <li>
 
-			$event_description = get_field('upcoming_event_description');
+        <a href="$doc_file" class="dashicons dashicons-media-document docs-dashicons
+        " aria-hidden="true"></a>
+		
+        <div>
+            <h3>$doc_title</h3> 
+			<p>$doc_description</p> 
+			<a href="$doc_file" >Click Here</a>
+        </div>
+        </li>
+DOCSX;
+    }
+    echo '</ul>';
+}
 			
-			
-
-			$event_costs = get_field('event_costs');
-			$dens_participating = get_field('dens_participating');
-			
-			$cost_list = "N/A";
-			$dens_list = "N/A";
-			$event_link = get_permalink();
-
-            if($event_costs){
-				$cost_list = "<ul class='event_listing homepage'>";
-				foreach($event_costs as $event_costs){
-					//var_dump($event_cost);
-					$cost_list .= '<li>' . $event_costs["cost_description"] . ' : $' . $event_costs["cost_amount"] . '</li>';
-				}
-				$cost_list .= "</ul>";
-			}
-
-			if($dens_participating){
-				$dens_list = "<ul class='event_listing homepage'>";
-				foreach($dens_participating as $den_participating){
-					//echo $den_participating;
-					$dens_list .= '<li>' . $den_participating . '</li>';
-				}
-				$dens_list .= "</ul>";
-			}
-			
-        echo <<<PACKEVENT
-        <article class="pack_event">
-            <h3>$event_title | status: <span>($event_status)</span></h3>
-            <sup>From: $start_date $start_time To: $end_date $end_time</sup>
-            <section>
-                $upcoming_event_description;
-            <h3>Dens:</h3>
-            $dens_list
-            </section>
-        </article>
-PACKEVENT;        
-  
-
-
 			wp_link_pages(
 				array(
 					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'scouts' ),

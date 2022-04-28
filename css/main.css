@@ -5,20 +5,53 @@ body{
     margin:0;
     overflow-x: hidden;
 
+    background-color: #577cd3;
+    background-image:  url(/wp-content/themes/scouts/images/ground.svg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
-    background-image: url(/images/sky.svg), url(/images/ground.svg);
-    background-position: top, bottom;
-    background-repeat: no-repeat, no-repeat;
+.documents_list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.documents_list li{
+    display: flex;
+    flex-direction: row;
+    padding: 1em 0;
+    border: 1px solid #CCC;
+}
+
+.documents_list li div{
+    padding-left: 4em;
+    pointer-events: none;
+}
+
+.documents_list li div h3{
+    margin-top: 0;
+}
+
+a.docs-dashicons{
+    text-decoration: none;
+    font-size: 4em;
+    
+}
+
+.pack160_events:nth-of-type(n+1) .entry-content{
+    background-color: #EEE;
 }
 
 nav a, nav a:active, nav a:visited{
+    font-weight: 700;
     color: #2d509f;
 }
 
-
-
 #page{
     max-width: 1440px;
+    width: 100%;
 }
 
 .page_sections{
@@ -32,14 +65,18 @@ nav a, nav a:active, nav a:visited{
 
 .site-branding{
     display: grid;
-    grid-template-columns: 2fr 4fr;
+    grid-template-columns: 1fr 4fr;
     align-items: center;
     font-size: 2em;
+    background-image:  url(/wp-content/themes/scouts/images/header-design.svg); 
+    background-repeat: repeat-x;
+    min-height: 5em;
+    background-position: 50%;
 }
 
 .custom-logo{
     width: auto;
-    min-height: 150px;
+    max-height: 150px;
 }
 
 .site-branding p{
@@ -55,7 +92,7 @@ nav a, nav a:active, nav a:visited{
     display: flex;
     flex-direction: row;
     background-color: #2d509f;
-    content: "";
+    /* content: ""; */
     position: absolute;
     width: 200%;
     height: 500px;
@@ -70,7 +107,7 @@ nav a, nav a:active, nav a:visited{
         display: flex;
         flex-direction: row;
         background-color: #fadf3c;
-        content: "";
+        /* content: ""; */
         position: absolute;
         width: 200%;
         height: 500px;
@@ -83,7 +120,7 @@ nav a, nav a:active, nav a:visited{
 }
 
 header#masthead{
-
+    margin: 1em 0 0 0;
     z-index: 99999999;
 }
 
@@ -103,20 +140,20 @@ header#hero-header a.sign-up-button{
     text-decoration: none;
     font-weight: 700;
     font-size: 1.25em;
+    z-index: 99;
 }
 
-header#hero-header::before{
+heaxder#hero-header::before{
     display: flex;
     flex-direction: row;
     background-color: #fadf3c;
-    content: "";
+    /* content: ""; */
     position: absolute;
     width: 200%;
     height: 400px;
     top: 500px;
     left: -30%;
     z-index: -1;
-    
     transform: rotate(-5deg);
 }
 
@@ -130,10 +167,9 @@ main section#content_sections{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+    border-radius: 0 0 1em 1em;
+    overflow: hidden;   
 }
-
-
 
 main section#content_sections .entry-content{
     background-color: #FFF;
@@ -141,11 +177,12 @@ main section#content_sections .entry-content{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin:0;
 }
 
 
 .content_section{
-    margin: 5em 0 0 0;
+    margin: 2em 0 1em 0;
     width: 100%;
 }
 
@@ -166,7 +203,7 @@ main section#content_section .content{
 
 footer.site-footer{
     
-    min-height: 14em;
+    min-height: 25em;
 }
 
 footer.site-footer::before{
@@ -174,7 +211,7 @@ footer.site-footer::before{
         display: flex;
         flex-direction: row;
         background-color: #2d509f;
-        content: "";
+        /* content: ""; */
         position: relative;
         width: 200%;
         height: 500px;
@@ -205,7 +242,7 @@ footer.site-footer::before{
 
 .pack_event{
     padding: 1em;
-    
+    border-bottom: 1px solid #CCC;
 }
 
 .pack_event:hover{
@@ -218,4 +255,67 @@ footer.site-footer::before{
 
 .pack_event h3 span{
     font-size: .75em;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    #header-video{
+        top: 0;
+    }
+
+    .menu#primary-menu li{
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        transition: 1s all;
+    }
+
+    .toggled .menu#primary-menu li{
+        height: 1em;
+        padding: 2.2em;
+    }
+
+    #site-navigation.main-navigation ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: .75em; 
+        justify-content: space-between;
+    }
+
+    #site-navigation .menu-toggle{
+        /* display: none; */
+        width: 100%;
+    }
+
+    #site-navigation{
+        border-radius: 0;
+    }
+
+    .site-branding {
+        display: flex;
+        flex-direction: column;
+
+        background-position: bottom;
+       padding-bottom: 1em;
+    }
+
+    .custom-logo{
+        height: 10em;
+    }
+
+    .site-branding p{
+        text-align: center;
+        font-size: 1em;
+     
+    }
+
+    .entry-content{
+        padding:1em;
+    }
+
+
 }
